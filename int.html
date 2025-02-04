@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速了解您的貸款方案</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft JhengHei", sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 30px 0;
+    }
+    
+    .quiz-container {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .question {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    
+    .question.active {
+      display: block;
+    }
+    
+    .options {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .option-btn {
+      padding: 15px;
+      border: 2px solid #e1e1e1;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+      font-size: 16px;
+    }
+    
+    .option-btn:hover {
+      border-color: #4CAF50;
+      background: #f9f9f9;
+    }
+    
+    .result {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.5s;
+    }
+    
+    .result.active {
+      display: block;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      margin: 20px 0;
+      transition: transform 0.3s;
+      animation: pulse 2s infinite;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: #e1e1e1;
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background: #4CAF50;
+      transition: width 0.3s;
+    }
+    
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .benefit-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .risk-notice {
+      font-size: 0.8em;
+      color: #666;
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>快速了解最適合您的貸款方案</h1>
+      <p>只需回答3個簡單問題，立即獲得專屬建議</p>
+    </div>
+    
+    <div class="quiz-container">
+      <div class="progress-bar">
+        <div class="progress" style="width: 0%"></div>
+      </div>
+      
+      <div class="question active" data-question="1">
+        <h3>您目前的職業狀況是？</h3>
+        <div class="options">
+          <button class="option-btn" onclick="nextQuestion(2)">上班族</button>
+          <button class="option-btn" onclick="nextQuestion(2)">企業主</button>
+          <button class="option-btn" onclick="nextQuestion(2)">自由工作者</button>
+        </div>
+      </div>
+      
+      <div class="question" data-question="2">
+        <h3>您希望的貸款金額範圍？</h3>
+        <div class="options">
+          <button class="option-btn" onclick="nextQuestion(3)">10-50萬</button>
+          <button class="option-btn" onclick="nextQuestion(3)">51-100萬</button>
+          <button class="option-btn" onclick="nextQuestion(3)">101-300萬</button>
+        </div>
+      </div>
+      
+      <div class="question" data-question="3">
+        <h3>您希望的還款期間？</h3>
+        <div class="options">
+          <button class="option-btn" onclick="showResult()">1-3年</button>
+          <button class="option-btn" onclick="showResult()">3-5年</button>
+          <button class="option-btn" onclick="showResult()">5-7年</button>
+        </div>
+      </div>
+      
+      <div class="result">
+        <h2>您符合申請條件！</h2>
+        <p>根據您提供的資訊，我們可為您規劃最適合的方案</p>
+        
+        <div class="benefits">
+          <div class="benefit-item">
+            <h4>最快撥款</h4>
+            <p>24小時</p>
+          </div>
+          <div class="benefit-item">
+            <h4>貸款額度</h4>
+            <p>最高300萬</p>
+          </div>
+          <div class="benefit-item">
+            <h4>專人服務</h4>
+            <p>一對一規劃</p>
+          </div>
+        </div>
+        
+        <a href="https://o2qvg.bemobtrcks.com/click?utm_source=quiz" class="cta-button">立即諮詢方案 →</a>
+      </div>
+    </div>
+    
+    <div class="risk-notice">
+      ⚠️ 提醒您：本服務為貸款諮詢服務。所有申請條件及核准與否，依銀行實際審核結果為準。
+      請審慎評估自身還款能力，避免過度借貸。
+    </div>
+  </div>
+  
+  <script>
+    function nextQuestion(num) {
+      document.querySelector('.question.active').classList.remove('active');
+      document.querySelector(`[data-question="${num}"]`).classList.add('active');
+      document.querySelector('.progress').style.width = `${(num-1)*33}%`;
+    }
+    
+    function showResult() {
+      document.querySelector('.question.active').classList.remove('active');
+      document.querySelector('.result').classList.add('active');
+      document.querySelector('.progress').style.width = '100%';
+    }
+  </script>
+</body>
+</html>
